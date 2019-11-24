@@ -1,0 +1,38 @@
+﻿@model AgriculturalResourceManagement.Models.SurveyDatas
+@{
+    ViewData["Title"] = "SurveyData";
+}
+
+<h1>SurveyData</h1>
+@foreach (var item in Model.data.Take(10))
+{
+    <div>
+        <h5>Year: </h5>
+        @Html.DisplayFor(modelItem => item.year)
+
+    </div>
+    <div>
+        <h5>Report: </h5>
+        @Html.DisplayFor(modelItem => item.report)
+    </div>
+    <div>
+        <h5>Farm Type: </h5>
+        @Html.DisplayFor(modelItem => item.farmtype)
+    </div>
+    <div>
+        <h5>Category: </h5>
+        @Html.DisplayFor(modelItem => item.category)
+    </div>
+    <div>
+        <h5>Category value: </h5>
+        @Html.DisplayFor(modelItem => item.category_value)
+    </div>
+    <br />
+}
+
+<script>
+    alertDbSave(@ViewBag.dbSuccessComp);
+</script>
+<div>
+    <a id="dbopt" asp-controller="Home" asp-action="PopulateCategories"><button type="button">Save</button></a>
+</div>

@@ -1,0 +1,34 @@
+﻿body
+{
+    font-family:sans-serif;
+    background-color:lightgrey;
+}
+
+.center {
+    overflow: hidden;
+    background-color: lightslategray;
+}
+
+    .center a {
+        float: left;
+        display: block;
+        color: lightgray;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+        .center a:hover {
+            background-color: lightslategray;
+            color: black;
+        }
+
+        .center a.active {
+            background-color: black;
+            color: white;
+        }
+
+    .center .icon {
+        display: none;
+    }

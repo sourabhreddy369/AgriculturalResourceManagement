@@ -1,0 +1,69 @@
+﻿@model AgriculturalResourceManagement.Models.Reports
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<h1>Reports</h1>
+<hr />
+@*<div>
+        <input id="search" type="text" onkeyup="Function()" placeholder="search" />
+    </div>
+
+    <div>
+        <button> </button>
+        <a id="dbopt" asp-controller="Home" asp-action="PopulateReports"><button type="button">Save</button></a>
+    </div>*@
+
+
+@*<script>
+        function Function() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+
+
+    </script>*@
+@foreach (var item in Model.data)
+{
+    <div>
+        <ul id="myUL">
+            <li>
+                @Html.DisplayFor(modelItem => item.id)
+            </li>
+            <li>
+                @Html.DisplayFor(modelItem => item.name)
+            </li>
+            <li>
+                <h5>Directions: </h5>
+                @Html.DisplayFor(modelItem => item.desc)
+            </li>
+        </ul>
+
+    </div>
+    <br />
+}
+
+<script>
+    alertDbSave(@ViewBag.dbSuccessComp);
+</script>
+<div>
+    <a id="dbopt" asp-controller="Home" asp-action="PopulateReports"><button type="button">Save</button></a>
+</div>
+@using (Html.BeginForm("SurveyData", "Home", FormMethod.Post))
+{
+    <input type="text" name="test" />
+    <input type="submit" value="Click" />
+}

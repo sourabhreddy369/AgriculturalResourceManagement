@@ -1,0 +1,36 @@
+﻿@model AgriculturalResourceManagement.Models.Categories
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h1>Categories</h1>
+
+
+@foreach (var item in Model.data)
+{
+    <div>
+        <h5>id: </h5>
+        @Html.DisplayFor(modelItem => item.id)
+
+    </div>
+    <div>
+        <h5>Name: </h5>
+        @Html.DisplayFor(modelItem => item.name)
+    </div>
+    <div>
+        <h5>Description: </h5>
+        @Html.DisplayFor(modelItem => item.description)
+    </div>
+    <div>
+        <h5>Sequence: </h5>
+        @Html.DisplayFor(modelItem => item.sequence)
+    </div>
+    <br />
+}
+
+<script>
+    alertDbSave(@ViewBag.dbSuccessComp);
+</script>
+<div>
+    <a id="dbopt" asp-controller="Home" asp-action="PopulateCategories"><button type="button">Save</button></a>
+</div>

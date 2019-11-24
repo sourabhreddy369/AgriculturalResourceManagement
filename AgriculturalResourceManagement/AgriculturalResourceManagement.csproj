@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20191122223636_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191122223636_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191122224015_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191122224015_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191122224703_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191122224703_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191122234343_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191122234343_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191122234819_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191122234819_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191122234939_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191122234939_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191122235437_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191122235437_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191122235638_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191122235638_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191122235949_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191122235949_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191123000445_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191123000445_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191123002054_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191123002054_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191123002617_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191123002617_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+</Project>
