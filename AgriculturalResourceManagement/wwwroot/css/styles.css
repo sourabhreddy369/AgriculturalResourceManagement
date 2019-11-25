@@ -1,0 +1,109 @@
+﻿body, html {
+    height: 100%;
+    font-family: sans-serif;
+    background-color: lightgray;
+}
+
+.MyCenter {
+    overflow: hidden;
+    background-color: lightslategray;
+}
+
+    .MyCenter a {
+        float: left;
+        display: block;
+        color: lightgray;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+        .MyCenter a:hover {
+            background-color: lightslategray;
+            color: black;
+        }
+
+        .MyCenter a.active {
+            background-color: black;
+            color: white;
+        }
+
+    .MyCenter .icon {
+        display: none;
+    }
+
+@media screen and (max-width: 950px) {
+    .MyCenter a:not(:first-child) {
+        display: none;
+    }
+
+    .MyCenter a.icon {
+        float: right;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .MyCenter.responsive {
+        position: relative;
+    }
+
+        .MyCenter.responsive .icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .MyCenter.responsive a {
+            float: none;
+            display: block;
+            text-align: left;
+        }
+}
+
+
+.para {
+    padding-top: 10px;
+    bottom: 0px;
+}
+
+h2:hover {
+    background-color: slategray;
+}
+
+
+.MyTable {
+    border: 3px solid #808080;
+   table-layout:auto;
+   width:100%;
+   border-collapse: collapse;
+}
+
+    .MyTable td, .MyTable th {
+        border: 1px solid #ddd;
+        
+        padding-top:12px;
+        padding-bottom:12px;
+        padding-right:50px;
+        padding-left: 50px;
+      
+    }
+
+    .MyTable tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .MyTable tr:hover {
+        background-color: #ddd;
+    }
+
+
+    .MyTable th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: black;
+        color: white;
+    }
+

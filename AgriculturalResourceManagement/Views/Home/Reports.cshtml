@@ -3,67 +3,152 @@
     ViewData["Title"] = "Reports";
 }
 
-<h1>Reports</h1>
-<hr />
-@*<div>
-        <input id="search" type="text" onkeyup="Function()" placeholder="search" />
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale = 1" />
+        @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+        <script src="MyJavascript.js"></script>
+        <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+        <script src="~/js/Custom.js"></script>
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+        <title> Reports </title>
+    </head>
+<body>
+
+    <div style="left:0px; width:0px; height:0px;">
+        <img src="~/img/download.jpg" alt="USF_LOGO" height="60" width="100" />
     </div>
+    <h2 style="text-align:center; font-family:sans-serif;">
+        Agricultural Resource Management System
+    </h2>
+    <div class="MyCenter" id="myCenter" style="font-family:sans-serif; align-content:center;">
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 
+        <a asp-area="" asp-controller="Home" asp-action="Categories">Category</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="Reports">Report</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="States">States</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="Chart">Chart</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="AboutUS">AboutUs</a>
+
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+
+
+    </div>
     <div>
-        <button> </button>
-        <a id="dbopt" asp-controller="Home" asp-action="PopulateReports"><button type="button">Save</button></a>
-    </div>*@
 
+        <h2>Reports</h2>
+        <hr />
 
-@*<script>
-        function Function() {
-            var input, filter, ul, li, a, i, txtValue;
-            input = document.getElementById("search");
-            filter = input.value.toUpperCase();
-            ul = document.getElementById("myUL");
-            li = ul.getElementsByTagName("li");
-            for (i = 0; i < li.length; i++) {
-                a = li[i].getElementsByTagName("a")[0];
+        <p>
+            USDA’s Economic Research Service (ERS) is making data from USDA’s Agricultural Resource Management Survey (ARMS) available through an Application Programming Interface (API) to better serve customers.
+        </p>
 
-                txtValue = a.textContent || a.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
+        <h5>Fetch Survey Data</h5>
+        <p>
+            The survey data can be fetched from the survey data API using report type. The report name from the below list can be
+            given as a key to get survey data of particular report type by entering the report type in the text box given and click
+            on Get Survey Data button. For example, enter "Government Payments" to fetch the survey data of report type Government Payments.
+            <br />
+            <h6>Example:</h6>
+            <li>Government Payments</li>
+            <li>Farm Business Income Statement</li>
+            <li>Income Statement</li>
+
+        </p>
+        @using (Html.BeginForm("SurveyData", "Home", FormMethod.Post))
+        {
+
+            <label for="text">Get survey data of report type:</label>
+            <input type="text" class="form-control" id="text" name="test" style="width:auto; border-radius:12px; height:30px; align-content:center">
+            <br />
+            <div>
+
+                <input type="submit" class="MyButton" value="GetSurveyData">
+
+            </div>
+
+            <style>
+                .Mybutton {
+                    background-color: #4CAF50;
+                    border: none;
+                    color: white;
+                    padding: 15px 32px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin: 4px 2px;
+                    cursor: pointer;
+                    border-radius: 12px;
                 }
-            }
+            </style>
+
+
         }
 
+        <br />
+        <div style="text-align:center">
+            <b>Reports are displayed in the table below</b>
+            <div>
+                <br /> <br />
 
-    </script>*@
-@foreach (var item in Model.data)
-{
-    <div>
-        <ul id="myUL">
-            <li>
-                @Html.DisplayFor(modelItem => item.id)
-            </li>
-            <li>
-                @Html.DisplayFor(modelItem => item.name)
-            </li>
-            <li>
-                <h5>Directions: </h5>
-                @Html.DisplayFor(modelItem => item.desc)
-            </li>
-        </ul>
+                <table class="MyTable">
+                    <tr>
+                        <th>Report Id </th>
+                        <th>Report Name </th>
+                        <th>Description Name </th>
 
-    </div>
-    <br />
-}
+                    </tr>
 
-<script>
+                    @foreach (var item in Model.data)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.id)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </td>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.desc)
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+                <br /> <br />
+                <script>
     alertDbSave(@ViewBag.dbSuccessComp);
-</script>
-<div>
-    <a id="dbopt" asp-controller="Home" asp-action="PopulateReports"><button type="button">Save</button></a>
-</div>
-@using (Html.BeginForm("SurveyData", "Home", FormMethod.Post))
-{
-    <input type="text" name="test" />
-    <input type="submit" value="Click" />
-}
+                </script>
+
+                <div style="text-align:center">
+                    <a id="dbopt" asp-controller="Home" asp-action="PopulateReports">
+                        <input type="button" class="MyButton" value="Save Reports">
+                    </a>
+                </div>
+
+                <style>
+                    .Mybutton {
+                        background-color: #4CAF50;
+                        border: none;
+                        color: white;
+                        padding: 15px 32px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;
+                        margin: 4px 2px;
+                        cursor: pointer;
+                        border-radius: 12px;
+                    }
+                </style>
+
+            </div>
+</body>

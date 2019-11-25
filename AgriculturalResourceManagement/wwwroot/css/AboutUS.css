@@ -4,12 +4,12 @@
     background-color:lightgrey;
 }
 
-.center {
+.MyCenter {
     overflow: hidden;
     background-color: lightslategray;
 }
 
-    .center a {
+    .MyCenter a {
         float: left;
         display: block;
         color: lightgray;
@@ -19,16 +19,16 @@
         font-size: 14px;
     }
 
-        .center a:hover {
+        .MyCenter a:hover {
             background-color: lightslategray;
             color: black;
         }
 
-        .center a.active {
+        .MyCenter a.active {
             background-color: black;
             color: white;
         }
 
-    .center .icon {
+    .MyCenter .icon {
         display: none;
     }

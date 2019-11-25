@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AgriculturalResourceManagement.Models;
 using Newtonsoft.Json;
@@ -43,11 +42,8 @@ namespace NationalParks.Controllers
         {
             string REPORT_API_PATH = BASE_URL + "report?";
             string reportsData = "";
-
             Reports reports = null;
-
             httpClient.BaseAddress = new Uri(REPORT_API_PATH);
-
             // It can take a few requests to get back a prompt response, if the API has not received
             //  calls in the recent past and the server has put the service on hibernation
             try
@@ -69,7 +65,6 @@ namespace NationalParks.Controllers
                 // This is a useful place to insert a breakpoint and observe the error message
                 Console.WriteLine(e.Message);
             }
-
             return reports;
         }
 
@@ -77,11 +72,8 @@ namespace NationalParks.Controllers
         {
             string STATE_API_PATH = BASE_URL + "state?";
             string statesData = "";
-
             States states = null;
-
             httpClient.BaseAddress = new Uri(STATE_API_PATH);
-
             // It can take a few requests to get back a prompt response, if the API has not received
             //  calls in the recent past and the server has put the service on hibernation
             try
@@ -103,7 +95,6 @@ namespace NationalParks.Controllers
                 // This is a useful place to insert a breakpoint and observe the error message
                 Console.WriteLine(e.Message);
             }
-
             return states;
         }
 
@@ -111,11 +102,8 @@ namespace NationalParks.Controllers
         {
             string CATEGORY_API_PATH = BASE_URL + "category?";
             string categoriesData = "";
-
             Categories categories = null;
-
             httpClient.BaseAddress = new Uri(CATEGORY_API_PATH);
-
             // It can take a few requests to get back a prompt response, if the API has not received
             //  calls in the recent past and the server has put the service on hibernation
             try
@@ -137,13 +125,17 @@ namespace NationalParks.Controllers
                 // This is a useful place to insert a breakpoint and observe the error message
                 Console.WriteLine(e.Message);
             }
-
             return categories;
         }
 
+        /*
+         * This method takes the report name as string inout from reports view and displays survey data 
+         * for that report type
+         */
         [HttpPost]
         public IActionResult SurveyData(String test)
         {
+            if (test == null) test = "abc";
             string SURVEYDATA_API_PATH = BASE_URL + "surveydata?";
             string surveyData = "";
             string[] words = test.Split(' ');
@@ -152,7 +144,7 @@ namespace NationalParks.Controllers
             {
                 report = report +"+"+word;
             }
-
+            //Change the report name into the url format by replacing spaces with + symbol
             SurveyDatas surveyDatas = null;
             SURVEYDATA_API_PATH = SURVEYDATA_API_PATH + "year=2015&report="+report+"&";
             httpClient.BaseAddress = new Uri(SURVEYDATA_API_PATH);
@@ -178,7 +170,6 @@ namespace NationalParks.Controllers
                 // This is a useful place to insert a breakpoint and observe the error message
                 Console.WriteLine(e.Message);
             }
-
             return View(surveyDatas);
         }
 
@@ -196,14 +187,12 @@ namespace NationalParks.Controllers
         {
             HomeController webHandler = new HomeController(dbContext);
             Reports reports = webHandler.GetReports();
-
             return View(reports);
         }
         public IActionResult States()
         {
             HomeController webHandler = new HomeController(dbContext);
             States states = webHandler.GetStates();
-
             return View(states);
         }
 
@@ -211,7 +200,6 @@ namespace NationalParks.Controllers
         {
             HomeController webHandler = new HomeController(dbContext);
             Categories categories = webHandler.GetCategories();
-
             return View(categories);
         }
 
@@ -221,71 +209,127 @@ namespace NationalParks.Controllers
             return View();
         }
 
+        /*
+         * This method is triggered when save reports button is clicked on reports view.
+         * The reports are stored into database
+         */
         public IActionResult PopulateReports()
         {
-            // Retrieve the companies that were saved in the symbols method
-            // List<Candidates> candidate = JsonConvert.DeserializeObject<Candidates>(TempData["Candidates"].ToString());
             HomeController webHandler = new HomeController(dbContext);
             Reports report = webHandler.GetReports();
-            //Candidates candidate = JsonConvert.DeserializeObject<Candidates>(TempData["Candidates"].ToString());
             List<Report> cd = report.data;
             foreach (Report cd1 in cd)
             {
                 if (dbContext.Report.Where(c => c.id.Equals(cd1.id)).Count() == 0)
                 {
                     dbContext.Report.Add(cd1);
+                    ViewBag.Message = "Database Updated";
                 }
-
             }
-
             dbContext.SaveChanges();
             ViewBag.dbSuccessComp = 1;
             return View("Reports", report);
         }
 
+        /*
+         * This method is triggered when save categories button is clicked on categories view.
+         * The categories are stored into database
+         */
         public IActionResult PopulateCategories()
         {
-            // Retrieve the companies that were saved in the symbols method
-            // List<Candidates> candidate = JsonConvert.DeserializeObject<Candidates>(TempData["Candidates"].ToString());
             HomeController webHandler = new HomeController(dbContext);
             Categories category = webHandler.GetCategories();
-            //Candidates candidate = JsonConvert.DeserializeObject<Candidates>(TempData["Candidates"].ToString());
             List<Category> cd = category.data;
             foreach (Category cd1 in cd)
             {
                 if (dbContext.Category.Where(c => c.id.Equals(cd1.id)).Count() == 0)
                 {
                     dbContext.Category.Add(cd1);
+                    ViewBag.Message = "Database Updated";
                 }
-
             }
-
             dbContext.SaveChanges();
             ViewBag.dbSuccessComp = 1;
             return View("Categories", category);
         }
 
+        /*
+         * This method is triggered when save states button is clicked on states view.
+         * The states are stored into database
+         */
         public IActionResult PopulateStates()
         {
-            // Retrieve the companies that were saved in the symbols method
-            // List<Candidates> candidate = JsonConvert.DeserializeObject<Candidates>(TempData["Candidates"].ToString());
             HomeController webHandler = new HomeController(dbContext);
             States state = webHandler.GetStates();
-            //Candidates candidate = JsonConvert.DeserializeObject<Candidates>(TempData["Candidates"].ToString());
             List<State> cd = state.data;
             foreach (State cd1 in cd)
             {
                 if (dbContext.State.Where(c => c.id.Equals(cd1.id)).Count() == 0)
                 {
                     dbContext.State.Add(cd1);
-                    
+                    ViewBag.Message = "Database Updated";
                 }
-
             }
-
             dbContext.SaveChanges();
             ViewBag.dbSuccessComp = 1;
             return View("States", state);
+        }
+
+        /*
+        * This method returns the survey data when the report type is given as string
+        */
+        public SurveyDatas GetSurveyData(String test)
+        {
+            SurveyDatas surveyDatas = null;
+            string SURVEYDATA_API_PATH = BASE_URL + "surveydata?";
+            string surveyData = "";
+            string[] words = test.Split(' ');
+            String report = "";
+            foreach (String word in words)
+            {
+                report = report + "+" + word;
+            }
+            SURVEYDATA_API_PATH = SURVEYDATA_API_PATH + "year=2015&report=" + report + "&";
+            httpClient.BaseAddress = new Uri(SURVEYDATA_API_PATH);
+
+            // It can take a few requests to get back a prompt response, if the API has not received
+            //  calls in the recent past and the server has put the service on hibernation
+            try
+            {
+                HttpResponseMessage response = httpClient.GetAsync(SURVEYDATA_API_PATH).GetAwaiter().GetResult();
+                if (response.IsSuccessStatusCode)
+                {
+                    surveyData = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                }
+
+                if (!surveyData.Equals(""))
+                {
+                    // JsonConvert is part of the NewtonSoft.Json Nuget package
+                    surveyDatas = JsonConvert.DeserializeObject<SurveyDatas>(surveyData);
+                }
+            }
+            catch (Exception e)
+            {
+                // This is a useful place to insert a breakpoint and observe the error message
+                Console.WriteLine(e.Message);
+            }
+            return surveyDatas;
+        }
+
+        /*
+         * This method is used to generate line chart for the survey data
+         */
+        public IActionResult Chart()
+        {
+            string report = "Government Payments";
+            ViewBag.dbSuccessChart = 0;
+            SurveyDatas surveydatas = null ;
+            if (report != null)
+            {
+                HomeController webHandler = new HomeController(dbContext);
+                surveydatas = webHandler.GetSurveyData(report);
+            }
+            return View("Charts", surveydatas);
         }
 
 

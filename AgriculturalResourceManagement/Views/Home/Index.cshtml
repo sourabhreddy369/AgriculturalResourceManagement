@@ -2,31 +2,116 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Agricultural Resource Management</h2>
-<hr />
 
-<div>
-    <p>
-        This application let's you fetch data from National Park Service via their public <a href="https://www.ers.usda.gov/developer/data-apis/arms-data-api/" target="_blank">API</a>.
-        <br />
-        <br />
-        In order to use this application, all you need to do is get the API key from this <a href="https://api.data.gov/signup/" target="_blank">page</a>. Signup using your usf mail, the api key will be sent to you through email. Copy the key and paste it on line no 15 in APIHandlerManager/APIHandler.cs and re run the application.
-        <br />
-        <br />
-        The <a asp-area="" asp-controller="Home" asp-action="Reports">Reports</a> tab fetches parks data from the
+<!--Your HTML code here-->
+@*<nagarjuna's changes>*@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale = 1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="MyJavascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <script src="~/js/Custom.js"></script>
+    <title> Home </title>
+</head>
+<body>
+    <div style="left:0px; width:0px; height:0px">
+        <img src="~/img/download.jpg" alt="USF_LOGO" height="60" width="100" />
+    </div>
+    <h2 style="text-align:center;">
+        Agricultural Resource Management System
+    </h2>
+
+
+    <div class="MyCenter" id="myCenter" style="font-family:sans-serif; align-content:center">
+
+
+
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="Categories">Category</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="Reports">Report</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="States">States</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="Chart">Chart</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="AboutUS">AboutUs</a>
+
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+
+
+    </div>
+
+
+
+    <div class="para">
+        <p>
+            This application let's you fetch data from Agricultural Resource Management via their public <a href="https://www.ers.usda.gov/developer/data-apis/arms-data-api/" target="_blank">API</a>.
+            <br />
+            <br />
+            In order to use this application, all you need to do is get the API key from this <a href="https://api.data.gov/signup/" target="_blank">page</a>. Signup using your usf mail, the api key will be sent to you through email. Copy the key and paste it on line no 15 in APIHandlerManager/APIHandler.cs and re run the application.
+            <br />
+            <br />
+            The <a asp-area="" asp-controller="Home" asp-action="Reports">Reports</a> tab fetches reports data from the
             <a href="https://www.usda.gov/" target="_blank">U.S. DEPARTMENT OF AGRICULTURE </a> and displays the results.
 
-        The <a asp-area="" asp-controller="Home" asp-action="States">States</a>
-        The <a asp-area="" asp-controller="Home" asp-action="Categories">Categories</a>
-        <br />
-        <br />
-    </p>
+          Similarly with the <a asp-area="" asp-controller="Home" asp-action="States">States</a>
+            and the <a asp-area="" asp-controller="Home" asp-action="Categories">Categories</a> tabs.
+            <br />
+            <br />
+        </p>
 
-    <p>
-        Following learning objectives are fulfilled -
+
+    </div>
+
+
+
+    <div>
+        <p>
+            The Agricultural Resource Management Survey (ARMS) is sponsored jointly by USDA's Economic Research Service (ERS) and National Agricultural Statistics Service (NASS). ARMS was first conducted in 1996. It combined USDA's previous cropping practices, chemical use, and farm costs and returns surveys, which were conducted separately from 1975 to 1995. ARMS is a multiphase series of interviews with farm operators about their cropping practices, farm businesses, and households.
+        </p>
+        <h4><a name="phase1"></a>Phase I–Screening Survey</h4>
+        <p>Farmers and ranchers selected for the survey are contacted to verify that they still qualify as a farm and that they produce the specific commodities targeted by Phase II that year.</p>
+        <h4><a name="phase2"></a>Phase II–Production Practices and Costs Report</h4>
+        <p>Phase II questionnaires are only directed to operations producing the survey year’s target crop(s). The target crop is rotated on a multiyear cycle. Data are periodically collected for each major commodity, e.g. corn producers were surveyed in 2001, 2005, and 2010. Common information collected for all surveyed commodities includes (but is not limited to):</p>
         <ul>
-            <li>Connection to REST API using API key.</li>
-            <li>Consuming the data from the REST API.</li>
+            <li><strong>Field characteristics:</strong> field acreage, ownership, seed use and costs, yield, organic practices, conservation practices, crop rotations, and crop insurance.</li>
+            <li><strong>Nutrient or fertilizer applications:</strong> applications of synthetic and organic nutrients, including application costs, amounts, methods, and timing; as well as manure, compost, and soil testing practices.</li>
+            <li><strong>Bio-control or pesticide applications, and other pest management practices:</strong> applications of biological and chemical pesticides, including costs, amounts, methods, and timing; as well as various pest management practices such as scouting, assessment of pest problems, use of tillage and crop rotation, maintenance of equipment.</li>
+            <li><strong>Field operations:</strong> use of machinery and labor in the field. Tillage, technical services, and the use of precision technologies are included in this section. Associated costs for fuel and labor are documented.</li>
+            <li><strong>Irrigation:</strong> irrigation practices such as amount of water used, system type, and related expenses.</li>
         </ul>
-    </p>
-</div>
+        <h4><a name="phase3"></a>Phase III–Farm Business and Farm Household Information</h4>
+        <p>Beginning in 2012, the Phase III uses only two questionnaire versions: a general Costs and Returns Report and an expanded Costs and Returns Report for target crop or livestock producers, which collects detailed commodity-specific information. Prior to 2012, a Core (short) version of the questionnaire was used to simplify the general Costs and Returns Report. Information collected on all versions includes (but is not limited to):</p>
+        <ul>
+            <li><strong>Land in farm/ranch:</strong> acres of land owned or rented, rents paid or received.</li>
+            <li><strong>Acreage and production:</strong> acres harvested and total production.</li>
+            <li><strong>Livestock:</strong> quantity sold or removed and ending quantity.</li>
+            <li><strong>Commodity marketing and income:</strong> quantities and prices associated with marketing contracts, production contracts, cash or open market sales.</li>
+            <li><strong>Other farm-related income:</strong> Federal farm programs, custom work, energy lease and royalty payments.</li>
+            <li><strong>Operating and capital expenditures:</strong> livestock purchases, feed, seed, fertilizer, chemicals, fuel, labor, taxes, etc.</li>
+            <li><strong>Farm assets:</strong> dwellings, farm buildings, land, inventory, equipment.</li>
+            <li><strong>Farm debt:</strong> outstanding loans and their terms.</li>
+            <li><strong>Farm management and use of time:</strong> farm legal organization, farm business ownership, number of operators, time allocation of operator and spouse.</li>
+            <li><strong>Farm household:</strong> age and education of the operator and spouse, nonfarm income, assets, and debt.</li>
+        </ul>
+
+
+        
+        <br />
+        </p>
+
+
+    </div>
+
+
+</body>
+</html>
+
+@*<nagarjuna's changes>*@

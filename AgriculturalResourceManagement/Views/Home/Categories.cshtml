@@ -3,34 +3,169 @@
     ViewData["Title"] = "Categories";
 }
 
-<h1>Categories</h1>
 
 
-@foreach (var item in Model.data)
-{
-    <div>
-        <h5>id: </h5>
-        @Html.DisplayFor(modelItem => item.id)
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale = 1" />
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+    <script src="MyJavascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <script src="~/js/Custom.js"></script>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <title> Categories </title>
+</head>
+<body>
+
+    <div style="left:0px; width:0px; height:0px;">
+        <img src="~/img/download.jpg" alt="USF_LOGO" height="60" width="100" />
+    </div>
+    <h2 style="text-align:center; font-family:sans-serif;">
+        Agricultural Resource Management System
+    </h2>
+    <div class="MyCenter" id="myCenter" style="font-family:sans-serif; align-content:center;">
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="Categories">Category</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="Reports">Report</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="States">States</a>
+
+
+        <a asp-area="" asp-controller="Home" asp-action="Chart">Chart</a>
+        <a asp-area="" asp-controller="Home" asp-action="AboutUS">AboutUs</a>
+
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+
 
     </div>
-    <div>
-        <h5>Name: </h5>
-        @Html.DisplayFor(modelItem => item.name)
-    </div>
-    <div>
-        <h5>Description: </h5>
-        @Html.DisplayFor(modelItem => item.description)
-    </div>
-    <div>
-        <h5>Sequence: </h5>
-        @Html.DisplayFor(modelItem => item.sequence)
-    </div>
-    <br />
-}
 
+    <div>
+        <h2>Categories</h2>
+
+        <p>
+            The Data collected from the survey is categorized into multiple categories based on factors like Typology, Economy, Sales, age etc. The categories are sub classified into multiple divisions. Each category is given a short ID with description stating the function of the Category. For instance, Economic Class (Sal) is divided into classes like $1,000,000 and more; $500,000 to $999,999 etc. In the similar way the other categories have their sub classes to further define the data.
+
+            Categories are meta tags that provide context for the data. The Data collected from the survey is categorized into multiple categories based on factors like Typology, Economy, Sales, age etc. The categories are sub classified into multiple divisions. Each category is given a short ID with description stating the function of the Category. For instance, Economic Class (Sal) is divided into classes like $1,000,000 and more; $500,000 to $999,999 etc.Also, for Farm Resource Region, the data is classified into classes like Heartland, Northern Crescent, etc. In the similar way the other categories have their sub classes  to further define the data.
+
+        </p>
+        <br />
+        <div style="text-align:center">
+            <b>Categories are displayed in the table below</b>
+        </div>
+        <br /> <br />
+
+        <table class="MyTable">
+            <tr>
+                <th>Category Sequence </th>
+                <th>Category ID </th>
+                <th>Category Name </th>
+                <th>Category Description </th>
+            </tr>
+
+            @foreach (var item in Model.data)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sequence)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.description)
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <br />
+
+        <br />
+        <div style="text-align:center">
+            <a id="dbopt" asp-controller="Home" asp-action="PopulateCategories">
+                <input type="button" class="MyButton" value="Save Categories">
+            </a>
+        </div>
+
+        <style>
+            .Mybutton {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 12px;
+            }
+        </style>
+
+
+        <br />
+        <p>
+            Out of all the above categories, Farm Resource Regions, Farm Production Regions, USDA Land Resource Regions, NASS Crop Reporting Districts
+            are used to classify regions in United States
+        </p>
+        <div>
+            <b>Maps to show Category types</b>
+            <p>
+                This set of maps helps data users visualize and better understand the geographical scope and
+                level of aggregation by which many ARMS data are summarized. For example, the ARMS web data tool
+                presents farm financial estimates aggregated to Farm Resource Regions, which do not follow State boundaries.
+                Maps below demonstrate the different ways data are often summarized.
+            </p>
+
+            <p>
+                <b>U.S. Farm Resource Regions:</b>
+            <p>
+                Farm resource regions are defined using farm production regions, land resource regions, crop reporting districts,
+                and farm characteristics. The regions are designated at the county level and therefore do not generally follow State boundaries.
+            </p>
+            <img src="~/img/FarmResourceRegions.jpg" alt="Farm Resource Regions" height="500" width="800" />
+            </p>
+
+            <p>
+                <b>Farm Production Regions: </b>
+            <p>
+                The older Farm Production Regions, in following State boundaries, group unlike areas together because a
+                single State often encompasses different soils and typography. For example, the old Appalachian Region, comprised of Tennessee, Kentucky, North Carolina, West Virginia, and Virginia, contains the Appalachian Mountains, Piedmont, and Coastal Plain areas, all of which have quite different agriculture.
+            </p>
+            <img src="~/img/FarmProductionRegions.jpg" alt="Farm Production Regions" height="500" width="800" />
+            </p>
+
+            <p>
+                <b> USDA Land Resource Regions: </b>
+            <p>
+                In constructing the ERS production regions, analysts identified where areas with
+                similar types of farms intersected with areas of similar physiographic, soil, and climatic traits, as reflected in USDA's Land Resource Regions.
+            </p>
+            <img src="~/img/LandResourceRegions.jpg" alt="Land Resource Regions" height="500" width="800" />
+            </p>
+
+            <p>
+                <b>NASS Crop Reporting Districts: </b>
+            <p>
+                County reporting districts influenced the construction of the ERS farm resource regions by conforming intersecting
+                areas to follow the boundaries of NASS Crop Reporting Districts (CRD), which are aggregates of counties. With more and more data available at the county level, geographic representations need no longer be constrained to follow State boundaries.
+            </p>
+            <img src="~/img/NASSCropReportingDistricts.jpg" alt="NASS Crop Reporting Districts" height="500" width="800" />
+            </p>
+        </div>
+
+
+
+    </div>
+</body>
 <script>
     alertDbSave(@ViewBag.dbSuccessComp);
 </script>
-<div>
-    <a id="dbopt" asp-controller="Home" asp-action="PopulateCategories"><button type="button">Save</button></a>
-</div>

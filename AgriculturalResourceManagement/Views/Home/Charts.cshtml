@@ -1,0 +1,121 @@
+﻿@model AgriculturalResourceManagement.Models.SurveyDatas
+
+@{
+    ViewData["Title"] = "Charts";
+}
+
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale = 1" />
+        @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+        <script src="MyJavascript.js"></script>
+        <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+        <script src="~/js/Custom.js"></script>
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+
+        <meta charset="utf-8" />
+        <script src="~/js/Chart.js"></script>
+        <title> Charts </title>
+    </head>
+
+    <div style="left:0px; width:0px; height:0px;">
+        <img src="~/img/download.jpg" alt="USF_LOGO" height="60" width="100" />
+    </div>
+    <h2 style="text-align:center; font-family:sans-serif;">
+        Agricultural Resource Management System
+    </h2>
+    <div class="MyCenter" id="myCenter" style="font-family:sans-serif; align-content:center;">
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="Categories">Category</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="Reports">Report</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="States">States</a>
+
+
+        <a asp-area="" asp-controller="Home" asp-action="Chart">Chart</a>
+        <a asp-area="" asp-controller="Home" asp-action="AboutUS">AboutUs</a>
+
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+
+
+    </div>
+
+
+    <h3>Statistics of Survey data showing report type and estimate values for each year</h3>
+    <p>
+        The Survey data for all the years is plotted on a line graph showing the relation between the report type and the estimate
+        values within each year. Click the below button to view the pictorial representation showing the report type and estimate values
+    </p>
+
+    <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <body>
+        <canvas id="line-chart" width="800" height="450"></canvas>
+        <script>
+            new Chart(document.getElementById("line-chart"), {
+                type: 'line',
+                data: {
+                    labels: [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996],
+                    datasets: [{
+                        data: [135703, 10944, 758510, 82778, 149927, 631942, 346489, 26973],
+                        label: "Government Payments",
+                        borderColor: "#c45850",
+                        fill: false
+                    }, {
+                        data: [26973, 278656, 410253, 135703, 50463, 1654878, 110593, 126331, 584309, 312303],
+                        label: "Farm Business Balance Sheet",
+                        borderColor: "#3e95cd",
+                        fill: false
+                    }, {
+                        data: [135703, 71426, 346489, 868523, 5747, 26973, 293337, 278656, 262004, 2059272],
+                        label: "Farm Business Income Statement",
+                        borderColor: "#8e5ea2",
+                        fill: false
+                    }, {
+                        data: [26143, 478981, 758510, 71426, 82778, 82141, 1215011, 126331, 53268, 410253],
+                        label: "Farm Business Financial Ratios",
+                        borderColor: "#3cba9f",
+                        fill: false
+                    }, {
+                        data: [26143, 135703, 10944, 71426, 332306, 631942, 212319, 230286, 69925, 410253],
+                        label: "Structural Characterstics",
+                        borderColor: "#e8c3b9",
+                        fill: false
+                    }
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Survey Data for Agricultural Resource Management System'
+                    }
+                }
+            });</script>
+        <div style="text-align:center">
+            <a id="dbopt" asp-controller="Home" asp-action="Reports">
+                <input type="button" class="MyButton" value="Go back to Reports">
+            </a>
+        </div>
+
+        <style>
+            .Mybutton {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 12px;
+            }
+        </style>
+
+    </body>
+</html>
+

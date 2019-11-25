@@ -3,45 +3,115 @@
     ViewData["Title"] = "States";
 }
 
-<h1>States</h1>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale = 1" />
+        @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+        <script src="MyJavascript.js"></script>
+        <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+        <script src="~/js/Custom.js"></script>
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+        <title> States </title>
+    </head>
+<body>
 
-<div><b>States are displayed in the table below</b><br /></div>
-<table class="table">
-    <tr>
-        <th>State Id </th>
-        <th>State Code </th>
-        <th>State Name </th>
+    <div style="left:0px; width:0px; height:0px;">
+        <img src="~/img/download.jpg" alt="USF_LOGO" height="60" width="100" />
+    </div>
+    <h2 style="text-align:center; font-family:sans-serif;">
+        Agricultural Resource Management System
+    </h2>
+    <div class="MyCenter" id="myCenter" style="font-family:sans-serif; align-content:center;">
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 
-    </tr>
+        <a asp-area="" asp-controller="Home" asp-action="Categories">Category</a>
 
-    @foreach (var item in Model.data)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id)
-            </td>
+        <a asp-area="" asp-controller="Home" asp-action="Reports">Report</a>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.code)
-            </td>
-            <td>
+        <a asp-area="" asp-controller="Home" asp-action="States">States</a>
 
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-        </tr>
+        <a asp-area="" asp-controller="Home" asp-action="Chart">Chart</a>
 
-
-        
-    }
-
-</table>
+        <a asp-area="" asp-controller="Home" asp-action="AboutUS">AboutUs</a>
 
 
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
 
 
-<script>
+    </div>
+    <div>
+        <h2>States</h2>
+
+        <div>
+
+            <p>
+
+                ARMS Survey Design followed stratified sampling design. Strata are divisions within the sample frames that group
+                farms by region (or by State in the case of 15 heavily sampled States), farm sales category,
+                and commodity specialization.
+            </p>
+            <p>
+                Our focus in this page is the different states, ID and their codes
+                from which the data has been collected.
+            </p>
+            <div style="text-align:center">
+                <b>States are displayed in the table below</b><br /><br />
+            </div>
+            <table class="MyTable">
+                <tr>
+                    <th>State Id </th>
+                    <th>State Code </th>
+                    <th>State Name </th>
+
+                </tr>
+
+                @foreach (var item in Model.data)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.code)
+                        </td>
+                        <td>
+
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+
+            <br /><br />
+
+            <script>
     alertDbSave(@ViewBag.dbSuccessComp);
-</script>
-<div>
-    <a id="dbopt" asp-controller="Home" asp-action="PopulateStates"><button type="button">Update</button></a>
-</div>
+            </script>
+            <div style="text-align:center">
+                <a id="dbopt" asp-controller="Home" asp-action="PopulateStates">
+                    <input type="button" class="MyButton" value="Save States">
+                </a>
+            </div>
+
+            <style>
+                .Mybutton {
+                    background-color: #4CAF50;
+                    border: none;
+                    color: white;
+                    padding: 15px 32px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin: 4px 2px;
+                    cursor: pointer;
+                    border-radius: 12px;
+                }
+            </style>
+
+        </div>
+</body>

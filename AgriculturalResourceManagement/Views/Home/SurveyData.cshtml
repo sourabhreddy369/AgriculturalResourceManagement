@@ -3,36 +3,125 @@
     ViewData["Title"] = "SurveyData";
 }
 
-<h1>SurveyData</h1>
-@foreach (var item in Model.data.Take(10))
-{
-    <div>
-        <h5>Year: </h5>
-        @Html.DisplayFor(modelItem => item.year)
+
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale = 1" />
+        @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+        <script src="MyJavascript.js"></script>
+        <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+        <script src="~/js/Custom.js"></script>
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+        <title> Survey Data </title>
+    </head>
+<body>
+
+    <div style="left:0px; width:0px; height:0px;">
+        <img src="~/img/download.jpg" alt="USF_LOGO" height="60" width="100" />
+    </div>
+    <h2 style="text-align:center; font-family:sans-serif;">
+        Agricultural Resource Management System
+    </h2>
+    <div class="MyCenter" id="myCenter" style="font-family:sans-serif; align-content:center;">
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="Categories">Category</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="Reports">Report</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="States">States</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="Chart">Chart</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="AboutUS">AboutUs</a>
+
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+
 
     </div>
     <div>
-        <h5>Report: </h5>
-        @Html.DisplayFor(modelItem => item.report)
-    </div>
-    <div>
-        <h5>Farm Type: </h5>
-        @Html.DisplayFor(modelItem => item.farmtype)
-    </div>
-    <div>
-        <h5>Category: </h5>
-        @Html.DisplayFor(modelItem => item.category)
-    </div>
-    <div>
-        <h5>Category value: </h5>
-        @Html.DisplayFor(modelItem => item.category_value)
-    </div>
-    <br />
-}
+        <h2>SurveyData</h2>
+        <p>
 
-<script>
-    alertDbSave(@ViewBag.dbSuccessComp);
-</script>
-<div>
-    <a id="dbopt" asp-controller="Home" asp-action="PopulateCategories"><button type="button">Save</button></a>
-</div>
+        </p>
+        @if (Model.data.Count == 0)
+        {
+            <h6>
+                There is no survey data for this type of report, Please try with another report type. Click on the below button to go back
+                to reports tab
+            </h6>
+
+        }
+        @if (Model.data.Count != 0)
+        {
+            <div style="text-align:center">
+                <b>States are displayed in the table below</b><br /><br />
+            </div>
+        }
+            <table class="MyTable">
+                <tr>
+                    <th>Survey Year </th>
+                    <th>Report  </th>
+                    <th>Farm Type </th>
+                    <th>Category Name </th>
+                    <th>Category Value </th>
+                    <th>Estimate </th>
+                </tr>
+
+                @foreach (var item in Model.data.Take(10))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.year)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.report)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.farmtype)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.category_value)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.estimate)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            <br /><br />
+            <div>
+                <a id="dbopt" asp-controller="Home" asp-action="Reports">
+                    <input type="button" class="MyButton" value="Go back to Reports">
+                </a>
+            </div>
+
+            <style>
+                .Mybutton {
+                    background-color: #4CAF50;
+                    border: none;
+                    color: white;
+                    padding: 15px 32px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin: 4px 2px;
+                    cursor: pointer;
+                    border-radius: 12px;
+                }
+            </style>
+            <br />
+
+
+
+
+        </div>
+</body>
